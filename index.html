@@ -40,20 +40,43 @@
     let provider, signer, contract, userAddress;
 
     async function connectWallet() {
-      if (!window.ethereum) {
-        alert("MetaMask not found!");
-        return;
-      }
-      provider = new ethers.providers.Web3Provider(window.ethereum);
-      await provider.send("eth_requestAccounts", []);
-      signer = provider.getSigner();
-      userAddress = await signer.getAddress();
-      document.getElementById("wallet").innerText = userAddress;
+  if (window.ethereum) {
+    // ✅ MetaMask (Desktop + Mobile)
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []);
 
-      contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
-
-      loadInfo();
+    // 🔍 Network check (Polygon only)
+    const network = await provider.getNetwork();
+    if (network.chainId !== 137) {
+      alert("⚠️ Please switch to Polygon Mainnet (Chain ID 137) in your wallet.");
+      return;
     }
+
+  } else {
+    // ✅ Trust Wallet / Others via WalletConnect
+    const wcProvider = new WalletConnectProvider.default({
+      rpc: {
+        137: "https://polygon-rpc.com"
+      },
+    });
+    await wcProvider.enable();
+    provider = new ethers.providers.Web3Provider(wcProvider);
+
+    // 🔍 Check again
+    const network = await provider.getNetwork();
+    if (network.chainId !== 137) {
+      alert("⚠️ Please switch to Polygon Mainnet (Chain ID 137).");
+      return;
+    }
+  }
+
+  signer = provider.getSigner();
+  userAddress = await signer.getAddress();
+  document.getElementById("wallet").innerText = userAddress;
+  contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
+
+  loadInfo();
+}  
 
     async function loadInfo() {
       try {
