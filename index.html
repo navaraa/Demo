@@ -21,141 +21,185 @@
       scroll-behavior: smooth;
     }
     
+    body { 
+      font-family: 'Poppins', sans-serif; 
+      background:#f5f5f5;
+    }
     
-      /* ========== GLOBAL RESET ========== */
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #f5f6fa;       /* Light Background */
-  color: #333333;            /* Dark Text */
-}
-
-/* ========== HEADER ========== */
-.header {
-  background: #1e1e2f;       /* Dark Header */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 0.8rem 8%;
+  /*______________________SECTION 1 : header design__________________*/
+   .header {
+     background: #a29bfe;
+     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* neeche soft transparent line */
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     padding: 1rem 9%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     z-index: 100;  
+   }
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+    .logo-img {
+      height: 125px;  /* apne logo ka size adjust kar sakte ho */
+      width: auto;
+      border-radius: 8px;
+    }
+    .btn { 
+      background: #4CAF50;          /* green background */
+      color: #fff;                  /* white text */
+      font-family: 'Poppins', sans-serif;
+      font-size: 28px;              /* normal readable size */
+      padding: 10px 20px;           /* andar ka gap */
+      border: none;
+      border-radius: 10px;           /* thoda rounded */
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .btn:hover { 
+      background: #45a049;          /* thoda dark green */
+    }
+    .danger { 
+      background: #e53935;          /* red */
+    }
+    .danger:hover {
+      background: #d32f2f;          /* dark red */
+    }
+/*--**************************- -E N D--****************************-*/
+    
+    /*___________SECTION 2 & 3: WALLET INFO + Total stake count_______*/
+    .main-content {
+      margin-top: 150px;
+      Padding: 0px 20px;
+    }
+    .wallet-info, 
+    .total-stake {
+      display: flex;
+      justify-content: center;   /* horizontal center */
+      margin: 20px 0;
+    }
+    .w-add,
+    .stake-text,
+    .stake-no {
+      display: flex;
+      align-items: center;
+      background: #fff;          /* white box */
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* modern soft shadow */
+      font-size: 28px;
+      font-weight: 700;
+      color: #333;
+      min-width: 30%;          /* thoda bada box */
+      justify-content: center;   /* icon + address center me */
+    }
+    .total-stake {
+      gap: 20px
+    }
+    .wallet-balances {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 100;
-}
-
-.logo-img {
-  height: 60px;
-  width: auto;
-  border-radius: 6px;
-}
-
-/* ========== BUTTONS ========== */
-.btn, .danger {
-  font-size: 16px;
-  padding: 10px 18px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background 0.2s ease, transform 0.1s ease;
-}
-
-.btn {
-  background: #4a90e2;       /* Primary Blue */
-  color: #ffffff;
-}
-.btn:hover {
-  background: #357abd;       /* Darker Blue */
-  transform: translateY(-2px);
-}
-
-.danger {
-  background: #e74c3c;       /* Red */
-  color: #ffffff;
-}
-.danger:hover {
-  background: #c0392b;       /* Dark Red */
-  transform: translateY(-2px);
-}
-
-/* ========== MAIN CONTENT ========== */
-.main-content {
-  margin-top: 120px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.wallet-info .w-add {
-  background: #ffffff;       /* White Box */
-  padding: 14px 28px;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #444444;            /* Medium Dark Text */
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-.total-stake {
-  margin-top: 30px;
-  display: flex;
-  gap: 20px;
   justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
 }
 
-.stake-text, .stake-no {
-  background: #ffffff;       /* White Box */
-  padding: 14px 28px;
-  border-radius: 10px;
+.token-balance {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   font-size: 18px;
   font-weight: 600;
-  color: #444444;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  color: #333;
 }
 
-/* ========== CARDS ========== */
+.token-balance img {
+  width: 28px;
+  height: 28px;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+    
+    /*__________________SECTION 4 : User stake card (dymenic)____________________*/
+
+    /* Container jisme cards center me show honge */
 #stakeCards {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 25px;
-  padding: 20px 8%;
+  display: flex;
+  flex-direction: column;   /* ek ke neeche ek */
+  align-items: center;      /* horizontal center */
+  gap: 20px;                /* cards ke beech gap */
+  padding: 20px;
 }
 
+/* Har stake ka card */
 .card {
-  background: #ffffff;       /* White Card */
-  color: #333333;            /* Dark Text */
-  border-radius: 12px;
+  background: #1e1e2f;
+  color: #fff;
+  border-radius: 15px;
   padding: 25px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 90%;              /* screen ke hisaab se adjust hoga */
+  max-width: 450px;        /* ek fixed max width taaki bada na ho */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Hover effect */
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
-.card-title {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #eeeeee;
-  padding-bottom: 8px;
-}
-
+/* Text styling */
 .card p {
-  margin: 8px 0;
-  font-size: 15px;
+  margin: 10px 0;
+  font-size: 16px;
   line-height: 1.6;
 }
 
-.token-name {
-  margin-left: 4px;
-  font-weight: 500;
-  color: #666666;            /* Light Gray */
+/* Buttons */
+.btn, .danger {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+/* Claim button */
+.btn {
+  background: #4cafef;
+  color: white;
+}
+
+.btn:hover {
+  background: #2196f3;
+}
+
+/* Withdraw button */
+.danger {
+  background: #f44336;
+  color: white;
+}
+
+.danger:hover {
+  background: #d32f2f;
+}
+    .card-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 8px;
 }
 
 .card-actions {
@@ -163,11 +207,24 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.card-actions button {
-  flex: 1;
-  margin: 0 5px;
+    .card-actions button {
+      flex: 1;
+      margin: 0 5px;
+    }
+    .card .end-date {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #ccc;
+    }
+    
+    
+    .token-name {
+  margin-left: 4px;
+  font-weight: 500;
+  color: #ccc;
 }
-
+    
     
 
         /*__________________SECTION 5 : Total stake count_____________________*/
@@ -190,6 +247,9 @@ body {
       <div class="wallet-info">
         <div class="w-add" id="wallet">"Not Connected"</div>
       </div>
+      <!-- Wallet balances section -->
+<div class="wallet-balances" id="walletBalances"></div>
+      
     </div>
     <!----Section 3 : Total stake count ------>
       <div class="total-stake">
@@ -204,7 +264,14 @@ body {
 <!---------------------J A V A S C R I P T-----S T A R T------------------------------->
   <script>
     const CONTRACT_ADDRESS = "0x9fd473975cecd4587d78eb71f4498dde778c4b83";
+    // ✅ Navaa token address (apna asli address daalna yahan)
+const NAVAA_TOKEN = "0x23b7a4c2ec9d742b5b1698149e812ca1e10d3e73";
 
+// ✅ ERC20 ke liye chhota ABI
+const TOKEN_ABI = [
+  "function balanceOf(address account) view returns (uint256)",
+  "function decimals() view returns (uint8)"
+];
     const ABI = [
   "function stakeCount(address user) view returns (uint256)",
   "function pendingRewardForStake(address user, uint256 index) view returns (uint256)",
@@ -258,11 +325,12 @@ async function connectWallet() {
   contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
 
   loadInfo();
+  await loadBalances();
 }  
 
-    /*__________________Extra_________________*/
+    /*__________________Total Card design________________ */
 
-async function loadInfo() {
+    async function loadInfo() {
   try {
     const count = await contract.stakeCount(userAddress);
     document.getElementById("stakeCount").innerText = count.toString();
@@ -278,6 +346,10 @@ async function loadInfo() {
       const startDate = new Date(stakeInfo.startTime.toNumber() * 1000);
       const totalReward = stakeInfo.totalReward;
 
+      // 🔹 End Date calculate karo (1700 din ka duration)
+      const STAKE_DURATION = 1700 * 24 * 60 * 60; 
+      const endTime = new Date((stakeInfo.startTime.toNumber() + STAKE_DURATION) * 1000);
+
       const card = document.createElement("div");
       card.className = "card";
       card.innerHTML = `
@@ -286,31 +358,36 @@ async function loadInfo() {
         <p><b>Start Date:</b> ${startDate.toLocaleString()}</p>
         <p><b>Total Reward:</b> ${ethers.utils.formatEther(totalReward)} Navaa</p>
         <p><b>Pending Reward:</b>
-        <span id="pending-${i}">${ethers.utils.formatEther(pending)}</span> 
-        <span class="token-name">Navaa</span>
+          <span id="pending-${i}">${ethers.utils.formatEther(pending)}</span> 
+          <span class="token-name">Navaa</span>
         </p>
         <div class="card-actions">
           <button class="btn claimBtn" data-index="${i}">Claim Reward</button>
           <button class="danger withdrawBtn" data-index="${i}">Withdraw Principal</button>
         </div>
+        <p><b>End Date:</b> <span id="end-${i}"></span></p>
       `;
       stakeCardsContainer.appendChild(card);
 
-      // 🔄 Live update for Pending Reward
+      // 🔄 Pending Reward ko live update karna
       let pendingLive = parseFloat(ethers.utils.formatEther(pending));
       const totalRewardNum = parseFloat(ethers.utils.formatEther(totalReward));
-
-      // Example: maan lo fixed duration 30 din (apne contract ke hisaab se adjust karna)
-      const duration = 30 * 24 * 60 * 60; 
-      const rewardRatePerSecond = totalRewardNum / duration;
+      const rewardRatePerSecond = totalRewardNum / STAKE_DURATION;
 
       setInterval(() => {
         pendingLive += rewardRatePerSecond;
         document.getElementById(`pending-${i}`).innerText = pendingLive.toFixed(6);
       }, 1000);
+
+      // 🔄 End Date ko live update karna
+      function updateEndTime() {
+        document.getElementById(`end-${i}`).innerText = endTime.toLocaleString();
+      }
+      updateEndTime(); // pehli baar
+      setInterval(updateEndTime, 1000); // har second update
     }
 
-    // Buttons ko activate karo
+    // ✅ Buttons activate karo
     document.querySelectorAll(".claimBtn").forEach(btn => {
       btn.onclick = () => claimReward(btn.dataset.index);
     });
@@ -324,7 +401,33 @@ async function loadInfo() {
     alert("Error loading info: " + err.message);
   }
 }
+// ✅ POL aur Navaa Balance with Logo
+async function loadBalances() {
+  if (!provider || !userAddress) return;
 
+  // POL balance
+  const polBalance = await provider.getBalance(userAddress);
+  const polFormatted = ethers.utils.formatEther(polBalance);
+
+  // Navaa balance
+  const navaaContract = new ethers.Contract(NAVAA_TOKEN, TOKEN_ABI, provider);
+  const navaaBalance = await navaaContract.balanceOf(userAddress);
+  const navaaDecimals = await navaaContract.decimals();
+  const navaaFormatted = ethers.utils.formatUnits(navaaBalance, navaaDecimals);
+
+  // UI update
+  document.getElementById("walletBalances").innerHTML = `
+    <div class="token-balance">
+      <img src="POL.png" alt="MATIC">
+      ${parseFloat(polFormatted).toFixed(4)} POL
+    </div>
+    <div class="token-balance">
+      <img src="logo.png" alt="Navaa">
+      ${parseFloat(navaaFormatted).toFixed(4)} Navaa
+    </div>
+  `;
+}
+    
     ///////////////////////////////////////
     async function claimReward(index) {
   try {
